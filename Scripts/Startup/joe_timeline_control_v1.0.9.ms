@@ -145,6 +145,9 @@ fn load_Range2 SelectedItem = (
 		button bt_up_a "<" pos:[1435,2] width:30
 
 	--  =====================================================================
+		on bt_ret_max pressed do (
+			ShellLaunch "https://github.com/4698to/Joetime.linetool.bar"
+			)
 	---------------------------------------------------------
 		on bt_013 pressed do (
 			try (
