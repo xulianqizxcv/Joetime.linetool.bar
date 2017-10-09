@@ -145,10 +145,18 @@ fn load_Range2 SelectedItem = (
 		button bt_up_a "<" pos:[1435,2] width:30
 
 	--  =====================================================================
-		on bt_ret_max pressed do (
-			ShellLaunch "https://github.com/4698to/Joetime.linetool.bar"
-			)
+	rollout roll_about "About" width:200
+	(
+		label lab_dw "V1.0.9 by Joe -2017/10/9"
+		hyperlink lbl_01 "更新" address:"https://github.com/4698to/Joetime.linetool.bar" align:#Center
+	)
 	---------------------------------------------------------
+		on bt_ret_max pressed do (
+			CreateDialog roll_about
+
+			)
+		------------------------------------------------------
+
 		on bt_013 pressed do (
 			try (
 				filein (getdir #userScripts + "\\joe_script\\CAT_pose_v2.6.ms")
