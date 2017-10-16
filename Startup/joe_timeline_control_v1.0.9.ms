@@ -104,7 +104,7 @@ fn load_Range2 SelectedItem = (
 
 		button bt_012 "Save" width:30 tooltip:"Save File Path" pos:[235,2] --enabled:false
 		button bt_011 "CM" width:30 tooltip:"单位CM" pos:[265,2] --enabled:false
-		button bt_010 ".." width:30 tooltip:"..." pos:[295,2] enabled:false
+		button bt_010 "HUB" width:30 tooltip:"CAT_hub" pos:[295,2] --enabled:false
 		button bt_013 "CAT" width:30 tooltip:"CAT_Posture" pos:[325,2] --enabled:false
 
 
@@ -159,7 +159,7 @@ fn load_Range2 SelectedItem = (
 
 		on bt_013 pressed do (
 			try (
-				filein (getdir #userScripts + "\\joe_script\\CAT_pose_v2.6.ms")
+				filein (getdir #userScripts + "\\joe_scripts\\CAT_pose_v2.6.ms")
 			)catch(print"no find")
 		)
 	------------------------------------------------------------
@@ -185,11 +185,11 @@ fn load_Range2 SelectedItem = (
 			)catch(print"no find")
 		)
 	---------------------------------------------------
-		/*on bt_010 pressed do (
+		on bt_010 pressed do (
 			try (
-				filein (getdir #userScripts + "\\")
+				filein (getdir #userScripts + "\\joe_scripts\\joe_CAT-hub.v1.ms")
 			)catch(print"no find")
-		)*/
+		)
 	------------------------------------------------
 		/*on bt_009 pressed do (
 			try (
