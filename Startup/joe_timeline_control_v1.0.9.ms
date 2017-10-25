@@ -166,10 +166,17 @@ fn load_Range2 SelectedItem = (
 		on bt_012 pressed do (
 			try (
 				--filein (getdir #userScripts + "\\")
-                j_save = getmaxsavefilename filename:(maxfilepath+maxfilename)
+
+                local j_save = getmaxsavefilename filename:(maxfilepath+maxfilename)
                     if j_save!=undefined do
                     (
-                        savemaxfile j_save
+                    	if (MaxVersion())[1] >= 17000 then(
+                        	savemaxfile j_save saveAsVersion:2015
+                        	)
+                    	else (
+                    		savemaxfile j_save
+                    		)
+                        --保存版本 2015
                     )
 			)catch(print"no find")
 		)
