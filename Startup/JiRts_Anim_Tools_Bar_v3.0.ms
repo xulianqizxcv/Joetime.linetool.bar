@@ -17,31 +17,42 @@ encryptscript "C:\Program Files\Autodesk\3ds Max 2016\scripts\JiRts_Anim_Tools_B
 增加了很多功能 不表述
 去除了刷新模型
 */
+---------------------------------------
 
 /*2017-12-26
+JiRts_Anim_Tools_Bar v_Joe.10
+---------------------------------------
+
+
 
 */
 (if atime != undefined do (try(cui.unRegisterDialogBar atime;destroydialog  atime)catch())
 
-rollout atime "JiRts_Anim_Tools_Bar v3.0" width:1800 height:34
+rollout roll_about "About" width:200
+(
+        label lab_dw "V_Joe.10 by Joe -2017/12/26"
+        hyperlink lbl_01 "更新" address:"https://github.com/4698to/Joetime.linetool.bar" align:#Center
+)
+
+rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 (
 
-	button	btn_JiRt				"!"				pos:[0,5]		width:8		height:24
+	button	btn_close				"!"				pos:[0,5]		width:8		height:24   toolTip:"关闭工具栏"
 	button	btn_ReStartMax			"卐"			pos:[8,5]		width:24	height:24	toolTip:"重启MAX"
 	button btn_ReSet				"卍"			pos:[32,5]		width:24	height:24	toolTip:"重置MAX"
-	button	btn_RunSpt				"※"			pos:[56,5]		width:24	height:24	toolTip:"运行脚本"
+	button	btn_RunSpt				"R"			pos:[56,5]		width:24	height:24	toolTip:"Updates"
 
 	button	btn_PSgo				"编辑贴图"		pos:[380,5]		width:60	height:20	toolTip:"用PS打开已选择物体的贴图"
 	button	btn_RescaleWU			"缩放单位"		pos:[440,5]		width:60	height:20	toolTip:"缩放世界单位以及蒙皮模型跟CS骨骼"
-	button	btn_Copitor				"复制工具"		pos:[500,5]		width:60	height:20	toolTip:"很给力"
-	button	btn_Spring				"骨骼解算"		pos:[560,5]		width:60	height:20	toolTip:"很给力"
+	button	btn_Copitor				"复制工具"		pos:[500,5]		width:60	height:20	--toolTip:"很给力"
+	button	btn_Spring				"骨骼解算"		pos:[560,5]		width:60	height:20	--toolTip:"很给力"
 
 
 	button	btn_centerPivot			"轴心"			pos:[680,5]		width:40	height:20	toolTip:"坐标居中到对象"
 	button	btn_bottomPivot			"轴底"			pos:[720,5]		width:40	height:20	toolTip:"坐标移到对象底部"
 	button	btn_zeroMin				"落地"			pos:[760,5]		width:40	height:20	toolTip:"移到对象最低点坐标归零"
 	button	btn_TransformZero		"归零"			pos:[800,5]		width:40	height:20	toolTip:"对象旋转位移全部归零"
-	button	btn_XForm				"重置模型"		pos:[840,5]		width:60	height:20	toolTip:"一键ResetXForm，并塌陷为POLY"
+	button	btn_XForm				"XForm"		pos:[840,5]		width:40	height:20	toolTip:"ResetXForm，并塌陷为POLY"
 
 
 	checkbox	chb_Lock			""				pos:[960,5]		width:30	height:24	checked:true	toolTip:"锁定对象"
@@ -262,13 +273,16 @@ rollout atime "JiRts_Anim_Tools_Bar v3.0" width:1800 height:34
 
 	----------button
 
-	on btn_JiRt pressed do	----------制作人信息
+	on btn_close pressed do	----------close bar
 	 (
-	 messagebox "
+	 /*messagebox "
 	 Thank you for using. :-)
 	 Created by : JiRt
 	 Email : JiRt@qq.com
 	 " title:"JiRts_Anim_Tools_Bar v1.0" beep:false
+     */
+        try(cui.UnRegisterDialogBar timerange)catch()
+        try(destroyDialog timerange)catch()
 	 )
 
 	on btn_ReStartMax pressed do	----------重启MAX
@@ -282,9 +296,10 @@ rollout atime "JiRts_Anim_Tools_Bar v3.0" width:1800 height:34
 	 )
 
 
-	on btn_RunSpt pressed do	----------RUN
+	on btn_RunSpt pressed do	---------- Updates
 	 (
-     actionMan.executeAction 0 "40470"  -- MAX Script: Run Script
+     --actionMan.executeAction 0 "40470"  -- MAX Script: Run Script
+        CreateDialog roll_about
 	 )
 
 	on btn_Boxmode pressed do	----------框显
