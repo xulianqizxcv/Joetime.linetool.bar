@@ -42,10 +42,10 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	button btn_ReSet				"卍"			pos:[32,5]		width:24	height:24	toolTip:"重置MAX"
 	button	btn_RunSpt				"R"			pos:[56,5]		width:24	height:24	toolTip:"Updates"
 
-	button	btn_PSgo				"编辑贴图"		pos:[380,5]		width:60	height:20	toolTip:"用PS打开已选择物体的贴图"
+	--button	btn_PSgo				"编辑贴图"		pos:[380,5]		width:60	height:20	toolTip:"用PS打开已选择物体的贴图"
 	button	btn_RescaleWU			"缩放单位"		pos:[440,5]		width:60	height:20	toolTip:"缩放世界单位以及蒙皮模型跟CS骨骼"
 	button	btn_Copitor				"复制工具"		pos:[500,5]		width:60	height:20	--toolTip:"很给力"
-	button	btn_Spring				"骨骼解算"		pos:[560,5]		width:60	height:20	--toolTip:"很给力"
+	--button	btn_Spring				"骨骼解算"		pos:[560,5]		width:60	height:20	--toolTip:"很给力"
 
 
 	button	btn_centerPivot			"轴心"			pos:[680,5]		width:40	height:20	toolTip:"坐标居中到对象"
@@ -55,8 +55,10 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	button	btn_XForm				"XForm"		pos:[840,5]		width:40	height:20	toolTip:"ResetXForm，并塌陷为POLY"
 
 
-	checkbox	chb_Lock			""				pos:[960,5]		width:30	height:24	checked:true	toolTip:"锁定对象"
-	label	lbl1					"锁定"			pos:[932,8]		width:28	height:24
+	--checkbox	chb_Lock			""				pos:[960,5]		width:30	height:24	checked:true	toolTip:"锁定对象"
+	--label	lbl1					"锁定"			pos:[932,8]		width:28	height:24
+
+	button btn_UHCAT	"[ CAT ]" pos:[970,5] width:50 height:20 toolTip:"隐藏显示CAT"
 
 	button	btn_Boxmode				"[ Box ]"		pos:[1020,5]	width:50	height:20	toolTip:"显示为外框"
 	checkbutton	btn_UHCS		"[ Bip ]"		pos:[1070,5]	width:50	height:20	highlightColor:	(color 214 148 25)	toolTip:"隐藏显示BIP"
@@ -65,12 +67,17 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	spinner	spn1				"Start:"		pos:[1215,8]	width:50	height:20	range:[-1e+008,1e+008,0]	type:#integer scale:1
 	spinner	spn2				"End:"			pos:[1298,8]	width:50	height:20	range:[-1e+008,1e+008,100]	type:#integer scale:1
 
-	checkbutton	ckb_speed1		"1/4x"			pos:[1375,5]	width:30	height:20	highlightColor:	(color 102 84 204)
+	/*checkbutton	ckb_speed1		"1/4x"			pos:[1375,5]	width:30	height:20	highlightColor:	(color 102 84 204)
 	checkbutton	ckb_speed2		"1/2x"			pos:[1405,5]	width:30	height:20	highlightColor:	(color 192 192 255)
 	checkbutton	ckb_speed3		"1x"			pos:[1435,5]	width:30	height:20	highlightColor:	(color 255 229 8)
 	checkbutton	ckb_speed4		"2x"			pos:[1465,5]	width:30	height:20	highlightColor:	(color 244 165 112)
 	checkbutton	ckb_speed5		"4x"			pos:[1495,5]	width:30	height:20	highlightColor:	(color 216 34 13)
+	*/
+	-------------------------------
+	label l_playSpeed "1x"  width:26 height:20 pos:[1375,5] align:#right --style_sunkenedge:true
+	slider sp_playSpeed "" pos:[1405,-8] range:[1,5,3] orient:#horizontal ticks:1 type:#integer width:80 height:30
 
+	-------------------------------
 
 
 
@@ -141,6 +148,9 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 		polyOp.setFaceSelection SourceOBJ tempSel
 		elementFirstFlags
 	)
+
+	---------------------------------- button
+
 	on atime open do
 	(
 
@@ -185,8 +195,18 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	)
 
 
+	---------------------------------
+	on sp_playSpeed changed val do (
+		case of	(
+			(val == 1):	(l_playSpeed.text="1/4x"; timeConfiguration.playbackSpeed = 1)
+			(val == 2):	(l_playSpeed.text="1/2x"; timeConfiguration.playbackSpeed = 2)
+			(val == 3):	(l_playSpeed.text="  1x"; timeConfiguration.playbackSpeed = 3)
+			(val == 4):	(l_playSpeed.text="  2x"; timeConfiguration.playbackSpeed = 4)
+			(val == 5):	(l_playSpeed.text="  4x"; timeConfiguration.playbackSpeed = 5)
+		)
+	)
 	----------checkbutton
-
+	/*
 	on ckb_speed1 changed state do
 	(
 		stopAnimation()
@@ -252,7 +272,8 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 			playAnimation immediateReturn:true
 		)
 	)
-
+	*/
+	/*
 	on chb_Lock changed theState do	----------锁定
 	(
 		if chb_Lock.checked == true then
@@ -270,7 +291,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 				)
 			)
 	)
-
+	*/
 	----------button
 
 	on btn_close pressed do	----------close bar
@@ -281,8 +302,8 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	 Email : JiRt@qq.com
 	 " title:"JiRts_Anim_Tools_Bar v1.0" beep:false
      */
-        try(cui.UnRegisterDialogBar timerange)catch()
-        try(destroyDialog timerange)catch()
+        try(cui.UnRegisterDialogBar atime)catch()
+        try(destroyDialog atime)catch()
 	 )
 
 	on btn_ReStartMax pressed do	----------重启MAX
@@ -304,8 +325,24 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 
 	on btn_Boxmode pressed do	----------框显
 	 (
-     max box mode selected
-	 )
+     --max box mode selected
+        if selection.count == 1 then(
+            try(
+     	        max box mode selected
+     	        sel=$
+     	        bound = nodeGetBoundingBox sel sel.transform
+     	        selSize = ( bound[2] - bound[1] )
+     	        clock.active = true
+     	        lab_height.text = "高: "+(selSize.z as string)
+     	        lab_width.text = "宽: "+ (selSize.y as string)
+     	        lab_length.text = "长: " + (selSize.x as string)
+     	    )catch()--外框大小
+        )
+        else (
+            max box mode selected
+            )
+    )
+
 
 	on btn_centerPivot pressed do	----------轴心
 	 (
@@ -396,12 +433,14 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	(
 		if state then
 		(
-			CS_All=for i in objects where (classof i==Biped_Object or classof i == Dummy) collect i
+			--CS_All=for i in objects where (classof i==Biped_Object or classof i == Dummy) collect i
+			CS_All=for i in objects where (classof i==Biped_Object and i.ishidden ==false) collect i
 			hide CS_All
 		)
 		else
 		(
-			CS_All=for i in objects where (classof i==Biped_Object or classof i == Dummy) collect i
+			--CS_All=for i in objects where (classof i==Biped_Object or classof i == Dummy) collect i
+			CS_All=for i in objects where (classof i==Biped_Object and i.ishidden ==false) collect i
 			unhide CS_All
 		)
 	)
@@ -410,12 +449,12 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	(
 		if state then
 		(
-			Bn_All=for i in objects where (classof i==BoneGeometry) collect i
+			Bn_All=for i in objects where (classof i==BoneGeometry and i.ishidden == false) collect i
 			hide Bn_All
 		)
 		else
 		(
-			Bn_All=for i in objects where (classof i==BoneGeometry) collect i
+			Bn_All=for i in objects where (classof i==BoneGeometry and i.ishidden == false) collect i
 			unhide Bn_All
 		)
 	)
