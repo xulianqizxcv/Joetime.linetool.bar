@@ -1,23 +1,24 @@
 /*
-Ê×ÏÈÄãÄÜ·´±àÒë¿´µ½ÎÒËµµÄÕâÐ©ÄÇÄã¿Ï¶¨±ÈÎÒŒÅ ºÃÓÃµÄ·´±àÒëÇó·ÖÏí
+首先你能反编译看到我说的这些那你肯定比我屌 好用的反编译求分享
 JiRts_Anim_Tools_Bar v3.0
 ---------------------------------------
 Description:
-Very Usefull to Control Your Animation ÂèµÄÖÐÎÄÒâË¼¾ÍÊÇÎªÁË·½±ã£¡²Ù£¡¾ÍÊÇÕâÃ´±©Ôê£¡
+Very Usefull to Control Your Animation 妈的中文意思就是为了方便！操！就是这么暴躁！
 ---------------------------------------
-Patchwork By :JiRt ÖÐÎÄÒâË¼¾ÍÊÇÕâ½Å±¾ÊÇÀÏ×Ó¶«Æ´Î÷´Õ»¨ÁËµã¶ùÐ¡ÐÄË¼ÕûºÏµ½Ò»ÆðµÄ£¬Ò²ÓÐ×Ô¼ºÐ´µÄ¹¦ÄÜ£¡¸É£¡
+Patchwork By :JiRt 中文意思就是这脚本是老子东拼西凑花了点儿小心思整合到一起的，也有自己写的功能！干！
 QQ:1588441
 Email : JiRt@QQ.com
 ---------------------------------------
-¼ÓÃÜ
+加密
 encryptscript "C:\Program Files\Autodesk\3ds Max 2016\scripts\JiRts_Anim_Tools_Bar_v1.0.ms" version:1.0
-
 ---------------------------------------
-ÐÞ¸ÄÊ±¼ä:2015Äê10ÔÂ10ÈÕ14:35:44
-Ôö¼ÓÁËºÜ¶à¹¦ÄÜ ²»±íÊö
-È¥³ýÁËË¢ÐÂÄ£ÐÍ
+修改时间:2015年10月10日14:35:44
+增加了很多功能 不表述
+去除了刷新模型
 */
 ---------------------------------------
+
+
 
 /*2017-12-26
 JiRts_Anim_Tools_Bar v_Joe.10
@@ -31,39 +32,42 @@ JiRts_Anim_Tools_Bar v_Joe.10
 rollout roll_about "About" width:200
 (
         label lab_dw "V_Joe.10 by Joe -2017/12/26"
-        hyperlink lbl_01 "¸üÐÂ" address:"https://github.com/4698to/Joetime.linetool.bar" align:#Center
+        hyperlink lbl_01 "检查更新" address:"https://github.com/4698to/Joetime.linetool.bar" align:#Center
 )
 
 rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 (
 
-	button	btn_close				"!"				pos:[0,5]		width:8		height:24   toolTip:"¹Ø±Õ¹¤¾ßÀ¸"
-	button	btn_ReStartMax			"…e"			pos:[8,5]		width:24	height:24	toolTip:"ÖØÆôMAX"
-	button btn_ReSet				"…d"			pos:[32,5]		width:24	height:24	toolTip:"ÖØÖÃMAX"
+	button	btn_close				"!"				pos:[0,5]		width:8		height:24   toolTip:"关闭工具栏"
+	button	btn_ReStartMax			"卐"			pos:[8,5]		width:24	height:24	toolTip:"重启MAX"
+	button btn_ReSet				"卍"			pos:[32,5]		width:24	height:24	toolTip:"重置MAX"
 	button	btn_RunSpt				"R"			pos:[56,5]		width:24	height:24	toolTip:"Updates"
 
-	--button	btn_PSgo				"±à¼­ÌùÍ¼"		pos:[380,5]		width:60	height:20	toolTip:"ÓÃPS´ò¿ªÒÑÑ¡ÔñÎïÌåµÄÌùÍ¼"
-    button  btn_save                "Save"      pos:[380,5]     width:60    height:20   toolTip:"Save File Path"
-	button	btn_RescaleWU			"Ëõ·Å"		pos:[440,5]		width:60	height:20	toolTip:"Ëõ·ÅÊÀ½çµ¥Î»ÒÔ¼°ÃÉÆ¤Ä£ÐÍ¸úCS¹Ç÷À"
-	button	btn_Copitor				"¸´ÖÆ"		pos:[500,5]		width:60	height:20	--toolTip:"ºÜ¸øÁ¦"
-	--button	btn_Spring				"¹Ç÷À½âËã"		pos:[560,5]		width:60	height:20	--toolTip:"ºÜ¸øÁ¦"
+	--button	btn_PSgo				"±à¼­ÌùÍ¼"		pos:[380,5]		width:60	height:20	toolTip:""
+    button  bt_save                "Save"      pos:[380,5]     width:40    height:20   toolTip:"Save File Path"
+	button	btn_RescaleWU			"缩放"		pos:[420,5]		width:40	height:20	toolTip:""
+	button	btn_Copitor				"复制"		pos:[460,5]		width:40	height:20	
+	button 	btn_point				"Point"		pos:[500,5]		width:40 	height:20 
+	button  btn_cat_hub			"HUB"		pos:[540,5]			width:40 	height:20	--enabled:false
+	button  btn_002				"CAT"		pos:[580,5]			width:40 	height:20	--enabled:false
+	--button	btn_Spring				"¹Ç÷À½âËã"		pos:[560,5]		width:60	height:20	--toolTip:""
 
 
-	button	btn_centerPivot			"ÖáÐÄ"			pos:[680,5]		width:40	height:20	toolTip:"×ø±ê¾ÓÖÐµ½¶ÔÏó"
-	button	btn_bottomPivot			"Öáµ×"			pos:[720,5]		width:40	height:20	toolTip:"×ø±êÒÆµ½¶ÔÏóµ×²¿"
-	button	btn_zeroMin				"ÂäµØ"			pos:[760,5]		width:40	height:20	toolTip:"ÒÆµ½¶ÔÏó×îµÍµã×ø±ê¹éÁã"
-	button	btn_TransformZero		"¹éÁã"			pos:[800,5]		width:40	height:20	toolTip:"¶ÔÏóÐý×ªÎ»ÒÆÈ«²¿¹éÁã"
-	button	btn_XForm				"XForm"		pos:[840,5]		width:40	height:20	toolTip:"ResetXForm£¬²¢ËúÏÝÎªPOLY"
+	button	btn_centerPivot			"轴心"			pos:[680,5]		width:40	height:20	toolTip:""
+	button	btn_bottomPivot			"轴底"			pos:[720,5]		width:40	height:20	toolTip:""
+	button	btn_zeroMin				"落地"			pos:[760,5]		width:40	height:20	toolTip:""
+	button	btn_TransformZero		"归零"			pos:[800,5]		width:40	height:20	toolTip:""
+	button	btn_XForm				"XForm"		pos:[840,5]		width:40	height:20	toolTip:""
 
 
-	checkbox	chb_Lock			""				pos:[930,5]		width:30	height:24	checked:true	toolTip:"Ëø¶¨¶ÔÏó"
-	label	lbl1					"Ëø¶¨"			pos:[902,8]		width:28	height:24
+	checkbox	chb_Lock			""				pos:[930,5]		width:30	height:24	checked:true	toolTip:""
+	label	lbl1					"锁定"			pos:[902,8]		width:28	height:24
 
-	button btn_UHCAT	"[ CAT ]" pos:[970,5] width:50 height:20 toolTip:"Òþ²ØÏÔÊ¾CAT"
+	button btn_UHCAT	"[ CAT ]" pos:[1020,5] width:50 height:20 toolTip:""
 
-	button	btn_Boxmode				"[ Box ]"		pos:[1020,5]	width:50	height:20	toolTip:"ÏÔÊ¾ÎªÍâ¿ò"
-	checkbutton	btn_UHCS		"[ Bip ]"		pos:[1070,5]	width:50	height:20	highlightColor:	(color 214 148 25)	toolTip:"Òþ²ØÏÔÊ¾BIP"
-	checkbutton	btn_UHBN		"[ Bone ]"		pos:[1120,5]	width:50	height:20	highlightColor:	(color 214 148 25)	toolTip:"Òþ²ØÏÔÊ¾Bone"
+	button	btn_Boxmode				"[ Box ]"		pos:[970,5]	width:50	height:20	toolTip:""
+	checkbutton	btn_UHCS		"[ Bip ]"		pos:[1070,5]	width:50	height:20	highlightColor:	(color 214 148 25)	toolTip:""
+	checkbutton	btn_UHBN		"[ Bone ]"		pos:[1120,5]	width:50	height:20	highlightColor:	(color 214 148 25)	toolTip:""
 
 	spinner	spn1				"Start:"		pos:[1215,8]	width:50	height:20	range:[-1e+008,1e+008,0]	type:#integer scale:1
 	spinner	spn2				"End:"			pos:[1298,8]	width:50	height:20	range:[-1e+008,1e+008,100]	type:#integer scale:1
@@ -122,7 +126,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	(
 		if fl_JudgeTheSelection() == 1 then return true
 		else (
-		messagebox "ÇëÑ¡ÔñÒ»¸öEPolyÎïÌå²¢ÉèÖÃµ±Ç°ÐÞ¸ÄÆ÷ÔÚEditable PolyÏÂ£¡" title:fl_tips01 beep:off
+		messagebox "请选择一个EPoly物体并设置当前修改器在Editable Poly下！" title:fl_tips01 beep:off
 		return false
 		)
 	)
@@ -169,7 +173,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 		append Layer_Name Layer_N.text
 		tem_Arr=#(Tools01.Layer_N.text,Sel_Obj,0)
 		append Layer_All tem_Arr
-	)-----Òþ²ØÏÔÊ¾CS
+	)-----隐藏显示CS
 
 	----------spinner
 
@@ -198,19 +202,15 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 
 	---------------------------------
 	on sp_playSpeed changed val do (
-        if isAnimPlaying() do (
-            stopAnimation()
-            --playAnimation()
-        )
+        
+        stopAnimation()
 		case of	(
-			(val == 1):	(l_playSpeed.text="1/4x"; timeConfiguration.playbackSpeed = 1)
-			(val == 2):	(l_playSpeed.text="1/2x"; timeConfiguration.playbackSpeed = 2)
-			(val == 3):	(l_playSpeed.text="  1x"; timeConfiguration.playbackSpeed = 3)
-			(val == 4):	(l_playSpeed.text="  2x"; timeConfiguration.playbackSpeed = 4)
-			(val == 5):	(l_playSpeed.text="  4x"; timeConfiguration.playbackSpeed = 5)
+			(val == 1):	(l_playSpeed.text="1/4x"; timeConfiguration.playbackSpeed = 1; playAnimation immediateReturn:true)
+			(val == 2):	(l_playSpeed.text="1/2x"; timeConfiguration.playbackSpeed = 2; playAnimation immediateReturn:true)
+			(val == 3):	(l_playSpeed.text="  1x"; timeConfiguration.playbackSpeed = 3; playAnimation immediateReturn:true)
+			(val == 4):	(l_playSpeed.text="  2x"; timeConfiguration.playbackSpeed = 4; playAnimation immediateReturn:true)
+			(val == 5):	(l_playSpeed.text="  4x"; timeConfiguration.playbackSpeed = 5; playAnimation immediateReturn:true)
 		)
-
-
 	)
 	----------checkbutton
 	/*
@@ -281,7 +281,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	)
 	*/
 
-	on chb_Lock changed theState do	----------Ëø¶¨
+	on chb_Lock changed theState do	----------
 	(
 		if chb_Lock.checked == true then
 			(
@@ -313,7 +313,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
         try(destroyDialog atime)catch()
 	 )
 
-	on btn_ReStartMax pressed do	----------ÖØÆôMAX
+	on btn_ReStartMax pressed do	----------
 	 (
 	 if checkForSave()
 	 then (
@@ -330,7 +330,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
         CreateDialog roll_about
 	 )
 
-	on btn_Boxmode pressed do	----------¿òÏÔ
+	on btn_Boxmode pressed do	----------
 	 (
      --max box mode selected
         if selection.count == 1 then(
@@ -351,7 +351,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
     )
 
 
-	on btn_centerPivot pressed do	----------ÖáÐÄ
+	on btn_centerPivot pressed do	----------轴心
 	 (
 		 if selection.count != 0 then
 			(
@@ -363,7 +363,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 			)
 	 )
 
-	on btn_bottomPivot pressed do	----------Öáµ×
+	on btn_bottomPivot pressed do	----------轴底
 	 (
 		 if selection.count != 0 then
 		 (
@@ -378,7 +378,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 		)
 	 )
 
-	on btn_zeroMin pressed do	----------ÂäµØ
+	on btn_zeroMin pressed do	----------落地
 	 (
 		 if selection.count != 0 then
 		 (
@@ -397,7 +397,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	 )
 
 
-	on btn_TransformZero pressed do	----------¹éÁã
+	on btn_TransformZero pressed do	----------归零
 	(
 			undo on
 				(
@@ -439,18 +439,18 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
     on btn_UHCAT changed state do
     (
         if state then (
-            local CATBone_All = for i in objects where (classof i==CATBone ) collect i
+            CATBone_All = for i in objects where (classof i==CATBone or classof i== HubObject ) collect i
             hide CATBone_All
         )
         else(
-            local CATBone_All = for i in objects where (classof i==CATBone ) collect i
+            CATBone_All = for i in objects where (classof i==CATBone or classof i== HubObject ) collect i
             unhide CATBone_All
             )
     )
 
      ------------------------------------------
 
-	on btn_UHCS changed state do	----------Òþ²ØCS
+	on btn_UHCS changed state do	----------隐藏CS
 	(
 		if state then
 		(
@@ -467,7 +467,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	)
     --------------------------------------------------
 
-	on btn_UHBN changed state do	----------Òþ²ØBONE
+	on btn_UHBN changed state do	----------隐藏BONE
 	(
 		if state then
 		(
@@ -481,35 +481,35 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 		)
 	)
 
-	on btn_RescaleWU pressed do	----------Ëõ·Åµ¥Î»
+	on btn_RescaleWU pressed do	----------缩放单位
 	(
         try (
-            filein (getdir #Scripts + "\JiRt_Scripts\JiRts_RescaleWU.mse")
+            filein (getdir #userScripts + "\\joe_scripts\\JiRts_RescaleWU.mse")
             )
         catch()
 	)
 
-	on btn_Copitor pressed do	----------¸´ÖÆ¹¤¾ß
+	on btn_Copitor pressed do	----------复制工具
 	(
         try (
-            filein (getdir #Scripts + "\JiRt_Scripts\JiRts_Copitor.mse")
+            filein (getdir #userScripts + "\\joe_scripts\\JiRts_Copitor.mse")
             )
         catch()
 	)
 
-	on btn_ReSet pressed do	----------ÖØÖÃmax
+	on btn_ReSet pressed do	----------重置max
 	(
 	 max reset file
 	)
 
 ----------------------------------------
     /*
-	on btn_PSgo pressed do	----------PS´ò¿ª
+	on btn_PSgo pressed do	----------PS打开
 		(
 
 
 	(
-	if selection.count == 0 then messagebox "ÇëÏÈÑ¡ÔñÒª±à¼­ÌùÍ¼µÄÒ»¸ö»ò¶à¸öÎïÌå£¡" title:"ÌáÊ¾£º"
+	if selection.count == 0 then messagebox "请先选择要编辑贴图的一个或多个物体！" title:"提示："
 		else
 	(
 maps_array = #()
@@ -524,11 +524,11 @@ for i in usedmaps (v) do (
 	)
 
 if maps_array.count != 0 then for i in maps_array do (try(psOLE = createOLEObject "Photoshop.Application"
-	psOLE.open i)catch(messagebox "Ã»ÓÐ¼ì²âµ½Äú°²×°µÄPS!" tlele:"ÌáÊ¾£º")
+	psOLE.open i)catch(messagebox "没有检测到您安装的PS!" tlele:"提示：")
 	)
 	else
 (
-		messagebox "µ±Ç°ÎïÌåÃ»ÓÐÌùÍ¼£¬»òÕßÌùÍ¼ÒÑ¶ªÊ§£¡" title:"ÌáÊ¾£º"
+		messagebox "当前物体没有贴图，或者贴图已丢失！" title:"提示："
 
 	)
 )
@@ -539,23 +539,44 @@ if maps_array.count != 0 then for i in maps_array do (try(psOLE = createOLEObjec
 ----------------------------------------
     on bt_save pressed do (
             try (
-                local j_save = getmaxsavefilename filename:(maxfilepath+maxfilename)
+                j_save = getmaxsavefilename filename:(maxfilepath+maxfilename)
                     if j_save!=undefined do
                     (
                         if (MaxVersion())[1] >= 17000 then(
-                            savemaxfile j_save saveAsVersion:2015
+                            savemaxfile j_save saveAsVersion:2015 --保存为2015版本
                             )
                         else (
                             savemaxfile j_save
                             )
-                        --±£´æ°æ±¾ 2015
+                        
                     )
             )catch()
-    )
+	)
+
+---------------------------------------
+on btn_point pressed do (
+	try(
+		filein (getdir #userScripts + "\\joe_scripts\\joe_Sele_Point_v01.ms")
+	)catch(print"no find")
+)
+--------------------------------------------
+
+on btn_cat_hub pressed do (
+	try(
+		filein (getdir #userScripts + "\\joe_scripts\\joe_CAT-hub.v1.ms")
+	)catch(print"no find")
+)
+----------------------------------------
+on btn_002 pressed do (
+	try (
+		filein (getdir #userScripts + "\\joe_scripts\\CAT_pose_v2.6.ms")
+	)catch(print"no find")
+)
+------------------------------------------------------------
 --------------------------------------------
 
     /*
-	on btn_Spring pressed do	----------¹Ç÷À½âËã
+	on btn_Spring pressed do	----------骨骼解算
 	(
         filein (getdir #Scripts + "\JiRt_Scripts\JiRts_Springmagic_0.9.mse")
 	)
