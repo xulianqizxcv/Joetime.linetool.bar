@@ -148,6 +148,7 @@ struct CT (
 
     fn contr_TCB_Euler alpha =
     (
+
         for i in selection do (
             if i[3][1].name == "LimbData" do (
                 if alpha == 1 then (
@@ -174,17 +175,45 @@ struct CT (
             )
             if i[3][1].name == "CATSpineData2" do (
                 if alpha == 1 then (
-                    i[3][2][avt_layer][2].controller = tcb_rotation ()
+                    try (
+                        i[3][2][avt_layer][2].controller = tcb_rotation ()
+                    )
+                    catch ()
                 )
                 else (
-                    i[3][2][avt_layer][2].controller = Euler_XYZ ()
+                    try(
+                        i[3][2][avt_layer][2].controller = Euler_XYZ ()
+                    )
+                    catch()
                 )
             )
-            --if i[3][1].name ==
+            if i[3][1].name == "" do (
+                if alpha == 1 then (
+                    try(
+                        i[3][2][avt_layer][2].controller = tcb_rotation ()
+                    )catch()
+                )
+                else(
+                    try(
+                        i[3][2][avt_layer][2].controller = Euler_XYZ ()
+                    )
+                    catch()
+                )
+            )
         )
     )
 
+    fn return_R = 
+    (
+        C_A_T = CAT_pose_tool.CT()
 
+        C_A_T.pick_cat_par()
+
+        cat_par_name = makeUniqueArray cat_par_name
+        cat_par = makeUniqueArray cat_par
+        CAT_pose_tool.down_list_cat_char.items = cat_par_name
+        CAT_pose_tool.get_avt_layer()
+    )
 --addNewKey <controller> <time> [#select] [#interpolate]
 /*
 CopyPasteAniIni_name = (getdir #userScripts) + "\\joe_scripts\\"+ CopyPasteAni_Name + ".ini";
@@ -233,9 +262,11 @@ setINISetting CopyPasteAniIni_name "SaveHistory" "Anim" "11"
         */
 --------------------------------------------------------
         on btn_tcb pressed do (
+            CAT_pose_tool.return_R()
             CAT_pose_tool.contr_TCB_Euler 1
         )
         on btn_euler pressed do(
+            CAT_pose_tool.return_R()
             CAT_pose_tool.contr_TCB_Euler 2
         )
 
