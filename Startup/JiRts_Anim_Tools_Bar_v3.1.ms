@@ -46,8 +46,8 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	--button	btn_PSgo				"±à¼­ÌùÍ¼"		pos:[380,5]		width:60	height:20	toolTip:""
     button  bt_save                "Save"      pos:[380,5]     width:40    height:20   toolTip:"Save File Path"
 	button	btn_RescaleWU			"缩放"		pos:[420,5]		width:40	height:20	toolTip:""
-	button	btn_Copitor				"复制"		pos:[460,5]		width:40	height:20	
-	button 	btn_point				"Point"		pos:[500,5]		width:40 	height:20 
+	button	btn_Copitor				"复制"		pos:[460,5]		width:40	height:20
+	button 	btn_point				"Point"		pos:[500,5]		width:40 	height:20
 	button  btn_cat_hub			"HUB"		pos:[540,5]			width:40 	height:20	--enabled:false
 	button  btn_002				"CAT"		pos:[580,5]			width:40 	height:20	--enabled:false
 	--button	btn_Spring				"¹Ç÷À½âËã"		pos:[560,5]		width:60	height:20	--toolTip:""
@@ -63,7 +63,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	checkbox	chb_Lock			""				pos:[930,5]		width:30	height:24	checked:true	toolTip:""
 	label	lbl1					"锁定"			pos:[902,8]		width:28	height:24
 
-	button btn_UHCAT	"[ CAT ]" pos:[1020,5] width:50 height:20 toolTip:""
+	checkbutton btn_UHCAT	"[ CAT ]" pos:[1020,5] width:50 height:20 toolTip:""
 
 	button	btn_Boxmode				"[ Box ]"		pos:[970,5]	width:50	height:20	toolTip:""
 	checkbutton	btn_UHCS		"[ Bip ]"		pos:[1070,5]	width:50	height:20	highlightColor:	(color 214 148 25)	toolTip:""
@@ -202,7 +202,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 
 	---------------------------------
 	on sp_playSpeed changed val do (
-        
+
         stopAnimation()
 		case of	(
 			(val == 1):	(l_playSpeed.text="1/4x"; timeConfiguration.playbackSpeed = 1; playAnimation immediateReturn:true)
@@ -548,7 +548,7 @@ if maps_array.count != 0 then for i in maps_array do (try(psOLE = createOLEObjec
                         else (
                             savemaxfile j_save
                             )
-                        
+
                     )
             )catch()
 	)
