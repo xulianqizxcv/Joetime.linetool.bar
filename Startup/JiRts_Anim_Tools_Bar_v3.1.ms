@@ -27,6 +27,11 @@ JiRts_Anim_Tools_Bar v_Joe.10
 
 
 */
+
+
+
+dotnet.loadAssembly @"D:\Program Files\Autodesk\3ds Max 2015\scripts\mmMaxControls\mmMaxControls.dll"
+
 (if atime != undefined do (try(cui.unRegisterDialogBar atime;destroydialog  atime)catch())
 
 rollout roll_about "About" width:200
@@ -37,6 +42,10 @@ rollout roll_about "About" width:200
 
 rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 (
+	--my_scripts = (symbolicPaths.getPathValue "$userScripts")--+"\\"
+	--mmUI_MaxControls = my_scripts + "\joe_scripts\mmMaxControls\mmMaxControls.dll"
+	--dotnet.loadAssembly @"C:\Users\Administrator\AppData\Local\Autodesk\3dsMax\2015 - 64bit\ENU\scripts\joe_scripts\mmMaxControls\mmMaxControls.dll"
+	
 
 	button	btn_close				"!"				pos:[0,5]		width:8		height:24   toolTip:"关闭工具栏"
 	button	btn_ReStartMax			"卐"			pos:[8,5]		width:24	height:24	toolTip:"重启MAX"
@@ -48,7 +57,12 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	button	btn_RescaleWU			"缩放"		pos:[420,5]		width:40	height:20	toolTip:""
 	button	btn_Copitor				"复制"		pos:[460,5]		width:40	height:20
 	button 	btn_point				"Point"		pos:[500,5]		width:40 	height:20
-	button  btn_cat_hub			"HUB"		pos:[540,5]			width:40 	height:20	--enabled:false
+
+	dotNetControl btn_mm_units "mmMaxControls.FlyoutButton" pos:[540,5] 		width:40		height:20
+
+	--button  btn_mm_units			"HUB"		pos:[540,5]			width:40 	height:20
+
+	--button  btn_cat_hub			"HUB"		pos:[540,5]			width:40 	height:20	--enabled:false
 	button  btn_002				"CAT"		pos:[580,5]			width:40 	height:20	--enabled:false
 	--button	btn_Spring				"¹Ç÷À½âËã"		pos:[560,5]		width:60	height:20	--toolTip:""
 
@@ -164,7 +178,14 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 			unregisterRedrawViewsCallback  initial
 
 			registerRedrawViewsCallback  initial
+
 			)catch()
+
+		--.net button
+		local flyoutStrip = dotnetObject "System.Drawing.Bitmap" @"D:\Program Files\Autodesk\3ds Max 2015\scripts\mmMaxControls\imageStrip.png"
+		btn_mm_units.setImageStrip flyoutStrip 2
+		--btn_mm_units.text = "22"
+		btn_mm_units.toolTips = #("Centimeters", "Meters")
 
 	)
 	fn Cet_Ly =
@@ -176,7 +197,23 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	)-----隐藏显示CS
 
 	----------spinner
-
+	on btn_mm_units ItemSelected s e do (
+		if e.index == 0 do  --centimeters
+			(
+				units.DisplayType = #metric
+            	units.MetricType = #centimeters
+            	units.SystemType = #Centimeters
+				print "Centimeters"
+			)
+		if e.index == 1 do
+			(
+				units.DisplayType = #metric
+				units.MetricType = #meters
+				units.SystemType = #meters
+				print "Meters"
+			)
+	)
+----------------------------------------------------------
 	on spn1 changed val do
 	(
 	try (if spn1.value == spn2.value then  ( spn2.value=spn1.value+100;animationRange = interval spn1.value spn2.value)else (animationRange = interval spn1.value spn2.value)
