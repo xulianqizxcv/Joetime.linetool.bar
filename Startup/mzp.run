@@ -1,0 +1,9 @@
+name "iRig"
+
+
+extract to $temp\iRig
+
+run  installer.ms
+drop installer.ms
+
+clear temp
