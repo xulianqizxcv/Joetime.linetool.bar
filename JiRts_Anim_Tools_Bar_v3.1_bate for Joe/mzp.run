@@ -1,0 +1,17 @@
+name "JiRts_Anim_Tools_Bar_v3.1_bate for Joe"
+description "time line toolbar"
+version 1.0
+
+copy "joe_scripts\JiRts_Copitor.mse" to "$userScripts\joe_scripts\"
+copy "joe_scripts\JiRts_Detriangulator_v2.0.ms" to "$userScripts\joe_scripts\"
+copy "joe_scripts\JiRts_RescaleWU.mse" to "$userScripts\joe_scripts\"
+copy "joe_scripts\joe_Sele_Point_v01.ms" to "$userScripts\joe_scripts\"
+copy "Startup\JiRts_Anim_Tools_Bar_v3.1_bate.ms" to "$userScripts\Startup\"
+copy "Startup\ALC_fixup.ms" to "$startupScripts\"
+copy "Startup\CRP_fixup.ms" to "$startupScripts\"
+
+drop $userScripts\Startup\JiRts_Anim_Tools_Bar_v3.1_bate.ms
+
+run $userScripts\Startup\JiRts_Anim_Tools_Bar_v3.1_bate.ms
+
+clear temp on MAX exit
