@@ -22,6 +22,9 @@ encryptscript "C:\Program Files\Autodesk\3ds Max 2016\scripts\JiRts_Anim_Tools_B
 
 /*2017-12-26
 JiRts_Anim_Tools_Bar v_Joe.10
+
+2018-1-20
+joe_JiRts_Anim_Tools_Bar_v3.1_bate
 ---------------------------------------
 
 
@@ -34,10 +37,19 @@ JiRts_Anim_Tools_Bar v_Joe.10
 
 (if atime != undefined do (try(cui.unRegisterDialogBar atime;destroydialog  atime)catch())
 
-rollout roll_about "About" width:200
+rollout roll_about "About" width:210
 (
         label lab_dw "V_Joe.10 by Joe -2017/12/26"
         hyperlink lbl_01 "检查更新" address:"https://github.com/4698to/Joetime.linetool.bar" align:#Center
+        button btn_units "卸载"		align:#Center
+
+        on btn_units pressed do
+        (
+        	try(
+		  		filein (getdir #userScripts + "\\joe_scripts\\joe_Unist_JiRts_Anim_Toolbar.ms")
+	   		)catch(print"no find")
+        )
+
 )
 
 rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
@@ -361,13 +373,14 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
         if selection.count == 1 then(
             try(
      	        max box mode selected
-     	        sel=$
+     	       /* sel=$
      	        bound = nodeGetBoundingBox sel sel.transform
      	        selSize = ( bound[2] - bound[1] )
      	        clock.active = true
      	        lab_height.text = "¸ß: "+(selSize.z as string)
      	        lab_width.text = "¿í: "+ (selSize.y as string)
      	        lab_length.text = "³¤: " + (selSize.x as string)
+     	        */
      	    )catch()--Íâ¿ò´óÐ¡
         )
         else (
@@ -509,7 +522,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	on btn_RescaleWU pressed do	----------缩放单位
 	(
         try (
-            filein (getdir #userScripts + "\\joe_scripts\\JiRts_RescaleWU.mse")
+            filein (getdir #userScripts + "\\joe_scripts\\joe_RescaleWU.mse")
             )
         catch()
 	)
@@ -517,7 +530,7 @@ rollout atime "JiRts_Anim_Tools_Bar v_Joe.10" width:1800 height:34
 	on btn_Copitor pressed do	----------复制工具
 	(
         try (
-            filein (getdir #userScripts + "\\joe_scripts\\JiRts_Copitor.mse")
+            filein (getdir #userScripts + "\\joe_scripts\\joe_Copitor.mse")
             )
         catch()
 	)

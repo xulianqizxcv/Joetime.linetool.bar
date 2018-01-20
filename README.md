@@ -8,7 +8,7 @@
 
 ![](https://github.com/4698to/Joetime.linetool.bar/blob/master/img/JiRts_Anim_Tools_Bar_v3.1_bate_for_Joe_01.png)
 
-1.    左起按钮依次为 ：关闭工具栏 ,重启MAX ,重置MAX,检查更新
+1.    左起按钮依次为 ：关闭工具栏 ,重启MAX ,重置MAX,检查更新-卸载
 
 2.    为预留的自定义按钮，需改写 “JiRts_Anim_Tools_Bar_v3.1_bate.ms”
 
@@ -20,6 +20,8 @@
 
 6.    快速切换播放速度
 
+
+另外添加了 ALC_fixup.ms CRP_fixup.ms 两个清毒的 ，如有弹窗记得点 确定
 --------------------
 
 ## 添加按钮
