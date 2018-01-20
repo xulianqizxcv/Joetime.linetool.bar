@@ -10,7 +10,7 @@
 
 * 1.    左起按钮依次为 ：关闭工具栏 ,重启MAX ,重置MAX,检查更新
 
-* 2.    为预留的自定义按钮，需改写 “JiRts_Anim_Tools_Bar_v3.1_bate.ms”  [方法](https://github.com/4698to/Joetime.linetool.bar/blob/master/)
+* 2.    为预留的自定义按钮，需改写 “JiRts_Anim_Tools_Bar_v3.1_bate.ms”
 
 * 3.    保留了原版中两个功能，缩放和复制。Save:保存到当前文件路径；Point：新建虚拟体工具；CM：设置单位为厘米
 
