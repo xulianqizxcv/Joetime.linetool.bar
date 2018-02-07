@@ -3,7 +3,7 @@ category:"Custom"
 tooltip:" ExportTool "
 --buttontext:"None"
 */
-rollout exportWindow "Export"
+rollout exportWindow "Auto Export FBX v.1"
 (
 	global j_exp
 	struct exp_test
@@ -165,7 +165,14 @@ rollout exportWindow "Export"
 
                 local g_bone_0_1 = getINISetting j_exp.CopyPasteAniIni_name "Bone_on_0_1" bone_name --读取 Bone on 值
                 local objjj = execute("$"+ bone_name)
-                if g_bone_0_1 == "1" do (objjj.boneEnable = true);else(objjj.boneEnable = false) --设置 Bone on
+                if g_bone_0_1 == "1" then
+                (
+                    objjj.boneEnable = true
+                )
+                else
+                (
+                    objjj.boneEnable = false
+                ) --设置 Bone on
                 --if objjj == undefined do ( continue)
 				append j_exp.export_file_list objjj
 			)
@@ -293,9 +300,9 @@ rollout exportWindow "Export"
 			edittext prefix_Save "Save   :" fieldWidth:235 labelOnTop:false across:2 align:#left
 			button btn_Save "..."  width:35 height:25  offset:[65,-5]  --across:2 align:#right
 		)
-		button export_Button "Explort"  width:100 height:25 across:2 alingn:#left
+		button export_Button "Explort"  width:200 height:30 --across:2 alingn:#cent
 		--checkbutton  chk_Config  "OpenConfig"  width:100 height:25
-		button chk_Config  "OpenConfig"  width:100 height:25
+		--button chk_Config  "OpenConfig"  width:100 height:25
 
 		group "Preset"
 		(
