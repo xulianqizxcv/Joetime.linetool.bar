@@ -3,7 +3,8 @@ category:"Custom"
 tooltip:" ExportTool "
 --buttontext:"None"
 */
-rollout exportWindow "Export"
+--savePath = (getSavePath "Save to:" initialDir:(@"C:\Users\"+sysInfo.username+"\Desktop")) as string
+rollout exportWindow "Auto Export FBX v.1"
 (
 	global j_exp
 	struct exp_test
@@ -35,20 +36,37 @@ rollout exportWindow "Export"
 			)
 		),
 		---------------------------------------------------------------------
-		fn get_end_key_time obj =  --获取obj 头尾帧 ，用来控制导出时间轴区间
+		fn get_end_key_time =  --获取obj 头尾帧 ，用来控制导出时间轴区间
 		(
-			if obj != undefined and obj[3][1].keys.count <= 1 then  --检查标记帧区间对象是否正常 ，
-			(
-				print j_exp.cust_file + obj.name +"没有设置标记区间帧"
-			)
-			else
-			(
-				kk = obj[3][1].keys.count--
-				--return #(obj[3][1].keys[1].time,obj[3][1].keys[kk].time)
-				s_t = (obj[3][1].keys[1].time.frame) as Integer
-				e_t = (obj[3][1].keys[kk].time.frame) as Integer
-				animationRange = interval s_t e_t
-			)
+            local obj_name = getINISetting j_exp.CopyPasteAniIni_name "SaveHistory" "root_key"
+            local obj = execute("$"+ obj_name)
+            if obj != undefined do
+            (
+                try (
+
+                    if classOf obj == Biped_Object then ()
+
+                    else if classOf obj == CATBone then ()
+                    else
+                    (
+            			if obj != undefined and obj[3][1].keys.count <= 1 then  --检查标记帧区间对象是否正常 ，
+            			(
+            				print j_exp.cust_file + obj.name +"没有设置标记区间帧"
+            			)
+            			else
+            			(
+                            try
+                            (
+                				kk = obj[3][1].keys.count--
+                				--return #(obj[3][1].keys[1].time,obj[3][1].keys[kk].time)
+                				s_t = (obj[3][1].keys[1].time.frame) as Integer
+                				e_t = (obj[3][1].keys[kk].time.frame) as Integer
+                				animationRange = interval s_t e_t
+                            )catch()
+            			)
+                    )
+                )catch()
+            )
 		),
 
 		fn set_bt_get_root_key obj =  --写入导出区间标记骨骼名
@@ -143,9 +161,11 @@ rollout exportWindow "Export"
 					setINISetting j_exp.CopyPasteAniIni_name "obj_num" "count" (j_exp.export_file_name.count as string)	--写入配置，导出骨骼数
 					for i=1 to j_exp.export_file_name.count do(
 						local name_string = i as string
-						local n_name = export_file_name[i]
+						local n_name = j_exp.export_file_name[i]
 						setINISetting j_exp.CopyPasteAniIni_name "SaveHistory" name_string n_name --写入导出骨骼列表
-                        local se_obj = execute("$"+n_name)
+
+                        local se_obj
+                        try (se_obj = execute("$"+n_name)) catch(se_obj = execute("$"+"'"+n_name+"'")) --特为Bib CAT 准备
                         if se_obj.boneEnable then(setINISetting j_exp.CopyPasteAniIni_name "Bone_on_0_1" n_name "1" )--写入Bone on 开关
                         else(setINISetting j_exp.CopyPasteAniIni_name "Bone_on_0_1" n_name "0")
 					)
@@ -165,7 +185,14 @@ rollout exportWindow "Export"
 
                 local g_bone_0_1 = getINISetting j_exp.CopyPasteAniIni_name "Bone_on_0_1" bone_name --读取 Bone on 值
                 local objjj = execute("$"+ bone_name)
-                if g_bone_0_1 == "1" do (objjj.boneEnable = true);else(objjj.boneEnable = false) --设置 Bone on
+                if g_bone_0_1 == "1" then
+                (
+                    objjj.boneEnable = true
+                )
+                else
+                (
+                    objjj.boneEnable = false
+                ) --设置 Bone on
                 --if objjj == undefined do ( continue)
 				append j_exp.export_file_list objjj
 			)
@@ -283,46 +310,46 @@ rollout exportWindow "Export"
 	--rollout exportWindow "Export"
 	--(
 
-		group "Source Path"
+		group "目标路径"--Source Path
 		(
-			editText sourceTxt "Source:" fieldWidth:235 labelOnTop:false across:2 align:#left
+			editText sourceTxt "Imp:" fieldWidth:270 labelOnTop:false across:2 align:#left
 			button sourceButton "..." width:35 height:25 offset:[65,-5]
 		)
-		group "Save Path"
+		group "保存路径"--Save Path
 		(
-			edittext prefix_Save "Save   :" fieldWidth:235 labelOnTop:false across:2 align:#left
+			edittext prefix_Save "Out:" fieldWidth:270 labelOnTop:false across:2 align:#left
 			button btn_Save "..."  width:35 height:25  offset:[65,-5]  --across:2 align:#right
 		)
-		button export_Button "Explort"  width:100 height:25 across:2 alingn:#left
+		button export_Button "自动导出"  width:200 height:30 --across:2 alingn:#cent
 		--checkbutton  chk_Config  "OpenConfig"  width:100 height:25
-		button chk_Config  "OpenConfig"  width:100 height:25
+		--button chk_Config  "OpenConfig"  width:100 height:25
+		group "设置" (--Setting
+					--checkbox load_fiel_type_fbx "" offset:[1,0] across:4
+					--label lblInfo_fbx "FBX" offset:[-95,0] tooltip:"处理FBX文件"--align:#left
+					button bt_get_root_key "帧区间标记" width:80 height:20  tooltip:"设置导出时间轴标记对象" --across:2 offset:[-1,-2]
+					--label bt_get_root_key_info "" offset:[-1,0]
 
-		group "Preset"
+					--checkbox load_fiel_type_max "" checked:true offset:[1,0] across:4
+					--label lblInfo_max "MAX" offset:[-94,0] tooltip:"处理MAX文件"--align:#left
+				    button bt_get_exp_list "导出对象" width:80 height:20 tooltip:"设置导出骨骼，会记录下对象的Bone on属性" --across:2 offset:[-1,-2]
+				    --label bt_get_exp_list_info "" offset:[-1,-2]
+				    -- Group body.
+				)
+		group "预设"--Preset
 		(
 		    -- Group body.
 
-			label exp_config "Exp Setting:" across:3 offset:[-30,3]
+			label exp_config "导出预设:" across:3 offset:[-30,3]
 			dropdownlist ddl_expoer_Preset "" width:240 height:20 items:(j_exp.set_Exp_settings) tooltip:"" offset:[-50,0]
-			button bt_config_1 "..." width:25 height:20 offset:[45,0]
+			button bt_config_1 "..." width:25 height:20 offset:[45,0] tooltip:"打开文件夹"
 
-			label cbx_FBX_pre "FBX Preset:" across:3 offset:[-30,3]
+			label cbx_FBX_pre "FBX预设:" across:3 offset:[-30,3]
 		     --dropdownlist ddlOutputpath width:240 height:20 items:(_data.optionOutputPath.Value()) tooltip:"" offset:[-40,0]
 			dropdownlist ddlPreset "" width:240 height:20 items:(j_exp.set_ExportFBXPreset) tooltip:"" offset:[-50,0]
-			button btnGetFolder "..." width:25 height:20 tooltip:"Browse for folder" offset:[45,0]
+			button btnGetFolder "..." width:25 height:20 tooltip:"打开文件夹" offset:[45,0]
 		)
+		hyperlink lbl_01 "帮助" address:"https://github.com/4698to/Joetime.linetool.bar" align:#Center
 
-		group "Setting" (
-			checkbox load_fiel_type_fbx "" offset:[1,0] across:4
-			label lblInfo_fbx "FBX" offset:[-95,0] tooltip:"处理FBX文件"--align:#left
-			button bt_get_root_key "" width:60 height:20 offset:[-120,-2] tooltip:"时间区间"
-			label bt_get_root_key_info "Animation Range" offset:[-125,0]
-
-			checkbox load_fiel_type_max "" checked:true offset:[1,0] across:4
-			label lblInfo_max "MAX" offset:[-94,0] tooltip:"处理MAX文件"--align:#left
-		    button bt_get_exp_list "" width:60 height:20 offset:[-120,-2] tooltip:"导出骨骼"
-		    label bt_get_exp_list_info "Export Bone list" offset:[-125,-2]
-		    -- Group body.
-		)
 		--button btn_ExConfigPath "Find Export Configuration File " width:355 \
 		--tooltip:"EX: C:\Users\UserName\Documents\3dsMax\FBX\3dsMax2014_X64\Presets\2015.0\export"
 ---------------------------------------------------------------------------------
@@ -433,7 +460,7 @@ rollout exportWindow "Export"
 
 				if (j_exp.StringIsEmpty j_exp.pathSource) then
 				(
-					messagebox("Source Path Is Null .")
+					messagebox("请设置源路径")
 				)
 
 				else if (j_exp.StringIsEmpty j_exp.pathSave)then
@@ -443,7 +470,7 @@ rollout exportWindow "Export"
 
 				else if (j_exp.StringIsEmpty j_exp.exConfigFile)then
 				(
-					messagebox(" Export ConfigFile File Is Null .\n Example C:\Users\UserName\Documents\
+					messagebox(" 请设置FBX导出预设 .\n Example C:\Users\UserName\Documents\
 						\n 3dsMax\FBX\3dsMax2014_X64\Presets\2015.0\export")
 				)
 
@@ -452,35 +479,22 @@ rollout exportWindow "Export"
 					--try
 					--(
 						j_exp.find_file 2
-						for i=1 to j_exp.tem_file_max.count do
-						(
-
-							j_exp.load_fiel j_exp.tem_file_max[i] --打开导入MAX-FBX
-							j_exp.cust_file = j_exp.tem_file_max[i]
-
-							--local gg = execute("$"+ j_exp.get_bt_get_roo_key())
-
-							--j_exp.get_end_key_time (execute("$"+ j_exp.get_bt_get_roo_key())) --设置导出时间轴
-							j_exp.get_export_bone_filename_list() --读取导出骨骼名单
-							--j_exp.sele_bone_name_list()
-							select j_exp.export_file_list
-							--enableSceneRedraw()
-							--redrawViews()
-							j_exp.export_file j_exp.tem_file_max[i] --导出
-
-							--max reset file
-							--tem_ss = objects as array
-							--delete tem_ss
+						if j_exp.tem_file_max.count != 0 do(
+							for i=1 to j_exp.tem_file_max.count do
+							(
+								j_exp.load_fiel j_exp.tem_file_max[i] --打开导入MAX-FBX
+								j_exp.cust_file = j_exp.tem_file_max[i]
+	                            j_exp.get_end_key_time()--设置导出时间轴
+								j_exp.get_export_bone_filename_list() --读取导出骨骼名单
+								select j_exp.export_file_list --选择导出对象
+								j_exp.export_file j_exp.tem_file_max[i] --导出
+							)
 						)
-
-						--FindFile pathSource
-
 					--)
 					--catch
 					--(
 						--format "*** % ***\n" (getCurrentException())
 					--)
-
 				)
 		)
 
@@ -521,36 +535,7 @@ rollout exportWindow "Export"
 		)
 
 		on btnGetFolder pressed do
-		(	/*
-			browse_dialog = dotNetObject "System.Windows.Forms.OpenFileDialog" --create a OpenFileDialog
-			browse_dialog.title = "Please select preset" --set the title
-			browse_dialog.Multiselect = false --allow multiple files to be selected
-			browse_dialog.Filter = "FBX Preset Files (*.fbxexportpreset)|*.fbxexportpreset|All Files (*.*)|*.*" --specify the filter
-			browse_dialog.FilterIndex = 1 --set the filter drop-down list to All Files
-			browse_dialog.InitialDirectory = "C:\Users\jos\Documents\3dsMax\FBX\3dsMax2014_X64\Presets\2014.0.1\export\BatchExport.fbxexportpreset"
-			result = browse_dialog.showDialog() --display the dialog, get result into variable
-
-			--if (result.Equals result.OK) do
-			--(
-				preset_arr = ddlPreset.items
-
-				e = Exporter()
-				preset_arr = e.InsertItemInArray preset_arr browse_dialog.fileNames[1]
-				-- Set a limit for the array
-				if (preset_arr.count > 10) do
-				(
-					newArr = #()
-					for i = 1 to 10 do (newArr[i] = preset_arr[i])
-					preset_arr = newArr
-				)
-				ddlPreset.items = preset_arr
-				ddlPreset.selection = 1
-				ddlPreset.tooltip = ddlPreset.items[1] as string
-				optionExportFBXPreset.SetValue preset_arr
-
-			--)
-			*/
-
+		(
 			local get_ExportFBXPreset = getOpenFileName filename:"D:\Documents\3dsMax\FBX\3dsMax2014_X64\Presets\2015.1\export" types:"Data(*.fbxexportpreset)|*.fbxexportpreset"
 			if get_ExportFBXPreset != undefined do (
 				append j_exp.set_ExportFBXPreset get_ExportFBXPreset
@@ -569,7 +554,7 @@ rollout exportWindow "Export"
 		)
 )
 	j_exp = exportWindow.exp_test()
-	createDialog exportWindow 370 350--135
+	createDialog exportWindow 370 315--135
 	--AddSubRollout exportWindow.theSubrollout exportConfig
 
 
