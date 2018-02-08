@@ -1,9 +1,0 @@
-name "Batch Exporter/Importer"
-version 4.1
-
-extract to $temp\batchexporterimporter
-
-run installer\installer_ui.mse
-drop installer\installer_ui.mse
-
-clear temp on MAX exit
