@@ -6,7 +6,7 @@
 ## Auto Export FBXv.1  [下载](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto%20Export%20FBX/AutoExportFBX.rar)
 
 
-![](https://github.com/4698to/Joetime.linetool.bar/blob/Auto%20Export%20FBX/Ui.png)
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto%20Export%20FBX/UI.png)
 
 ### 目标;保存,路径
 
