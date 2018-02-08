@@ -22,6 +22,32 @@ Out 保存文件夹，保存导出的 FBX文件夹。
 
 ### 设置
 帧区间标记：正常情况，导出都是按直接打开MAX档时的时间轴长度导出动画的。还是得看你保存MAX档时，时间轴长度是否是正确的动画长度。
+只需选中一个物体，最好是虚拟体，Bone 骨骼 ，BOX 什么的，Bip骨骼 CAT 没支持。
+
+            try (
+
+                    if classOf obj == Biped_Object then ()
+
+                    else if classOf obj == CATBone then ()
+                    else
+                    (
+                        if obj != undefined and obj[3][1].keys.count <= 1 then  --检查标记帧区间对象是否正常 ，
+                        (
+                            print j_exp.cust_file + obj.name +"没有设置标记区间帧"
+                        )
+                        else
+                        (
+                            try
+                            (
+                                kk = obj[3][1].keys.count--
+                                --return #(obj[3][1].keys[1].time,obj[3][1].keys[kk].time)
+                                s_t = (obj[3][1].keys[1].time.frame) as Integer
+                                e_t = (obj[3][1].keys[kk].time.frame) as Integer
+                                animationRange = interval s_t e_t
+                            )catch()
+                        )
+                    )
+                )catch()
 
 设置帧区间标记对象的作用就是，不管你打开MAX档时的时间轴长度，而是 ！！！按这个 帧区间标记对象 的头尾帧来设置时间轴！！！
 
