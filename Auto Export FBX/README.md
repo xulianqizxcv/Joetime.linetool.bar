@@ -3,10 +3,10 @@
 ---
 # Auto Export FBX v.1
 -------------
-## Auto Export FBXv.1  [下载](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto Export FBX/auto_export_FBX.v1.mse)
+## Auto Export FBXv.1  [下载](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto%20Export%20FBX/AutoExportFBX.rar)
 
 
-![](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto Export FBX/Ui.png)
+![](https://github.com/4698to/Joetime.linetool.bar/blob/Auto%20Export%20FBX/Ui.png)
 
 ### 目标;保存,路径
 
@@ -47,7 +47,7 @@ UE_Anim.fbxexportpreset ，是导出 动画 预设。只选择骨骼 导出。
 UE_MD.fbxexportpreset ，  是导出 模型 预设，选择模型和骨骼 导出。
 存放路径，(我的MAX版本是2015) D:\Documents\3dsMax\FBX\3dsMax2014_X64\Presets\2015.1\export
 
-![](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto Export FBX/FBX_export.png)
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto%20Export%20FBX/FBX_export.png)
 
 
 
