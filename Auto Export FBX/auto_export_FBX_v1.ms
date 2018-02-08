@@ -348,7 +348,7 @@ rollout exportWindow "Auto Export FBX v.1"
 			dropdownlist ddlPreset "" width:240 height:20 items:(j_exp.set_ExportFBXPreset) tooltip:"" offset:[-50,0]
 			button btnGetFolder "..." width:25 height:20 tooltip:"打开文件夹" offset:[45,0]
 		)
-		hyperlink lbl_01 "帮助" address:"https://github.com/4698to/Joetime.linetool.bar" align:#Center
+		hyperlink lbl_01 "帮助" address:"https://github.com/4698to/Joetime.linetool.bar/tree/master/Auto%20Export%20FBX" align:#Center
 
 		--button btn_ExConfigPath "Find Export Configuration File " width:355 \
 		--tooltip:"EX: C:\Users\UserName\Documents\3dsMax\FBX\3dsMax2014_X64\Presets\2015.0\export"
