@@ -71,7 +71,10 @@ UE_MD.fbxexportpreset ，  是导出 模型 预设，选择模型和骨骼 导�
 ![](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto%20Export%20FBX/FBX_export.png)
 
 
+快速查看导出FBX推荐使用  Autodesk FBX Review
+链接：https://pan.baidu.com/s/1ggNx4Rp 密码：8fx6
 
+https://www.autodesk.com/products/fbx/fbx-review
 ------------------------------
 BUG 反馈，建议
 99U : 199505
