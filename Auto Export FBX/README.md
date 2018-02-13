@@ -2,7 +2,13 @@
 
 ---
 # Auto Export FBX v.1
+
+
 -------------
+
+BUG 反馈，建议
+99U : 199505
+QQ : 738746223
 ## Auto Export FBXv.1  [下载](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto%20Export%20FBX/AutoExportFBX.rar)
 
 
