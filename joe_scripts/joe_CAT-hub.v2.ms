@@ -2,11 +2,14 @@ rollout s_CAT_transform "CAT-hub.v2" width:205 height:120
 (
     --local from_cat_hub = undefined
     --global from_cat_hub = undefined
-    local from_cat_hub = #()
-    local to_point = undefined
-    local Hub_root_name = ""
-    local hubs_name = ""
-    local set_name_string = #()
+    global j_cat_hub
+    struct cat_hub (
+    from_cat_hub = #(),
+    to_point = undefined,
+    Hub_root_name = "",
+    hubs_name = "",
+    set_name_string = #()
+    )
 ----------------------------------------------
     --pickbutton btn_cat_hub "Select" pos:[8,6] width:50
     button btn_cat_hub "Select" pos:[8,6] width:50
@@ -121,4 +124,6 @@ rollout s_CAT_transform "CAT-hub.v2" width:205 height:120
 
     )
 )
-createDialog s_CAT_transform
+
+j_cat_hub = s_CAT_transform.cat_hub()
+--createDialog s_CAT_transform

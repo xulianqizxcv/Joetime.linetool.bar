@@ -14,7 +14,7 @@ Imp 目标文件夹，会对文件夹内的全部 .MAX文件进行处理。但�
 
 Out 保存文件夹，保存导出的 FBX文件夹。
 
-
+红色框的 是必须设置的，绿色部分为可选功能 。
 
 
 
@@ -26,38 +26,21 @@ Out 保存文件夹，保存导出的 FBX文件夹。
 正常情况，导出都是按直接打开MAX档时的时间轴长度导出动画的。还是得看你保存MAX档时，时间轴长度是否是正确的动画长度。
 只需选中一个物体，最好是虚拟体，Bone 骨骼 ，BOX 什么的，Bip骨骼 CAT 没支持。
 
-            try (
 
-                    if classOf obj == Biped_Object then ()
+设置帧区间标记对象的作用就是用来控制导出动画长度。不管你打开MAX档的时间轴长度，而是 ！！！按这个 帧区间标记对象 的头尾帧来设置时间轴！！！(时间轴长度即导出动画长度)
 
-                    else if classOf obj == CATBone then ()
-                    else
-                    (
-                        if obj != undefined and obj[3][1].keys.count <= 1 then  --检查标记帧区间对象是否正常 ，
-                        (
-                            print j_exp.cust_file + obj.name +"没有设置标记区间帧"
-                        )
-                        else
-                        (
-                            try
-                            (
-                                kk = obj[3][1].keys.count--
-                                --return #(obj[3][1].keys[1].time,obj[3][1].keys[kk].time)
-                                s_t = (obj[3][1].keys[1].time.frame) as Integer
-                                e_t = (obj[3][1].keys[kk].time.frame) as Integer
-                                animationRange = interval s_t e_t
-                            )catch()
-                        )
-                    )
-                )catch()
+这个是可选功能，默认不启用的。你可以不设置标记对象，不勾选启用，但是如果要用 分段标记，就需要 选取帧区间标记对象。
 
-设置帧区间标记对象的作用就是，不管你打开MAX档时的时间轴长度，而是 ！！！按这个 帧区间标记对象 的头尾帧来设置时间轴！！！
 
-简单使用的小案例 就是动画分段导出，比如说动画总长度为 75 帧，现在需要分两段导出，00F-25F，25F-75F，你只需把这个当复制出一份，一份 帧区间标记对象 在0帧 25 帧 K上帧，另一份 在 25帧 75 帧，
 
 #### 分段标记：
 
+简单使用的小案例 就是动画分段导出，比如说动画总长度为 75 帧，现在需要分两段导出，00F-25F，25F-75F。你只需分别添加 0 25 75 (播放光标)然后写入到选中的 标记对象上。点击读取查看写入内容。写入成功后记得保存MAX。
+分段标记是保存在标记对象上 User Defined Properties 的，不是保存在配置文件中。
 
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto%20Export%20FBX/anim_spli.png)
+
+此功能默认关闭，开启请勾选启用，设置帧区间标记对象。
 
 #### 导出对象：
 
@@ -71,7 +54,9 @@ Out 保存文件夹，保存导出的 FBX文件夹。
 
 ### 预设
 
-导出预设 ， 就是导出配置，包含导出对象，Bone On 属性 ，帧区间标记对象。
+导出预设 ， 就是导出配置，Export_config.ini 包含导出对象，Bone On 属性 ，帧区间标记对象。
+
+
 
 FBX Export 预设
 
