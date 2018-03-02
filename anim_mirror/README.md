@@ -1,18 +1,20 @@
 
 
 ---
-# 动画镜像工具v.1
+# 动画镜像工具v.1.1
 -------------
 
-![](https://github.com/4698to/Joetime.linetool.bar/blob/master/anim_mirror/anim_mirror_img_01.png)
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/anim_mirror/anim_mirror_img_02.png)
 
 2018/3/2
 
 朋友提的需求，想给 Realting Spring 这个工具生成的 Help 控制器 一个 复制镜像黏贴 动画的工具。
 
-v.1 实现的工能就是简单的 选中 左边的 控制器 复制动画，然后选中右边的控制器 黏贴动画，完成动画镜像。
+v.1.1 实现的工能就是简单的 选中 左边的 控制器 复制动画，然后选中右边的控制器 黏贴动画，完成动画镜像。
 
- 当前是世界坐标轴为基准镜像动画，后期将加入自选基准坐标轴功能。
+基准轴对象 最好是两边骨骼的共同父对象，以这个父对象为坐标系镜像动画。
+
+如果基准轴对象是 Biped骨骼或者 设置的基准轴对象父级是 Biped骨骼 需要对试下镜像轴。
 
 
 ------------------------------
