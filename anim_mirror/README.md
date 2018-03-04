@@ -1,7 +1,7 @@
 
 
 ---
-# 动画镜像工具v.1.1
+# 动画镜像工具v1.3
 -------------
 
 ![](https://github.com/4698to/Joetime.linetool.bar/blob/master/anim_mirror/anim_mirror_img_03.png)
