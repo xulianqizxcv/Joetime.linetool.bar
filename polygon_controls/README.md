@@ -3,7 +3,7 @@
 ---
 # Polygon_Controls；布料模拟转骨骼动画做飘带
 -------------
-B 站视频 [](https://www.bilibili.com/video/av22810098/)
+B 站视频 https://www.bilibili.com/video/av22810098/
 
 ![](https://github.com/4698to/Joetime.linetool.bar/blob/master/polygon_controls/2018041520545.png)
 
