@@ -14,7 +14,7 @@ QQ : 738746223
 
 ![](https://github.com/4698to/Joetime.linetool.bar/blob/master/Auto%20Export%20FBX/UI.png)
 
-
+2018/5/1 更新导出空白的大BUG auto_export_FBX_v1_key_slid-v1
 
 ### 目标;保存,路径
 
