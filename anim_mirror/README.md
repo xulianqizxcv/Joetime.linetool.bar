@@ -22,7 +22,6 @@
 
 支持更多轴向 ！！
 
-![](https://github.com/4698to/Joetime.linetool.bar/blob/master/anim_mirror/anim_mirror_img_05.png)
 ----------------------------
 
 2018/5/28
