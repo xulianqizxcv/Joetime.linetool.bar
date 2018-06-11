@@ -1,7 +1,20 @@
 
 
 ---
-# Timeline Toolbar
+# Timeline Toolbar  v3.3
+-------
+2018-06-11
+
+全新版本
+
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/img/JiRts_Anim_Tools_Bar_v3.1_bate_for_Joe_04.png)
+
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/img/JiRts_Anim_Tools_Bar_v3.1_bate_for_Joe_05.png)
+
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/img/JiRts_Anim_Tools_Bar_v3.1_bate_for_Joe_06.png)
+
+
+=========================================================
 -------------
 ## JiRts_Anim_Tools_Bar_for_joe_v3.1_bate  [下载](https://github.com/4698to/Joetime.linetool.bar/blob/master/JiRts_Anim_Tools_Bar_for_joe_v3.1_bate_2018-01-20_1.0.mzp)
 
