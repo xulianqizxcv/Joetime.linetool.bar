@@ -45,7 +45,7 @@ joe_JiRts_Anim_Tools_Bar_v3.2_bate
 
     rollout roll_about "About" width:210
     (
-            label lab_dw "V_Joe.3.2 by Joe -2018/6/11"
+            label lab_dw "V_Joe.3.4 by Joe -2018/6/15"
             hyperlink lbl_01 "检查更新" address:"https://github.com/4698to/Joetime.linetool.bar" align:#Center
             button btn_units "卸载"		align:#Center
 
@@ -116,6 +116,17 @@ joe_JiRts_Anim_Tools_Bar_v3.2_bate
     ----------------------------------------------------------------------------
         struct tool_fn
         (
+            Custom_Script_list=#(),
+            fn reset_btn =
+            (
+                for i=1 to 16 do
+                (
+                    execute ("atime.btn_customize_" + (i as string) +".enabled = "+"false" ) --设置按钮停用
+                    execute ("atime.btn_customize_" + (i as string) +".text =\"\" ") --设置按钮字符
+                    execute ("atime.btn_customize_" + (i as string) +".toolTip =\"\" ")--
+                                    --设置按钮提示
+                )
+            ),
             fn creat_cust_roll a_dir_string =
             (--李骅
                 CustomScriptFiles = getFiles (a_dir_string + "*.*")
@@ -182,6 +193,7 @@ joe_JiRts_Anim_Tools_Bar_v3.2_bate
         ----------------------------------------------------------------------------
         	fn get_custtom_file a_index =
         	(
+                /*
                 --GetDirectories (Custom_Script_Dir+"/*")
         		global Custom_Script_Files = getFiles (Custom_Script_Dir + "*.*")
         		if Custom_Script_Files.count >= a_index then
@@ -196,41 +208,77 @@ joe_JiRts_Anim_Tools_Bar_v3.2_bate
                 (
                     return undefined
                 )
+                */
+                if (time_tool.Custom_Script_list.count !=0) and (time_tool.Custom_Script_list.count >= a_index) then
+                (
+                    --local a_string =  "custom_btn_" + (a_index as string) +" = " + "\""+Custom_Script_Files[a_index]+ "\""
+                    local a_string =  time_tool.Custom_Script_list[a_index]
+                    if a_string != undefined then
+                    (
+                        return a_string.file_0
+                    )
+                    else(return undefined)
+                    --execute a_string
+                )
+               else(return undefined)
         	),
         ----------------------------------------------------------------------------
         	fn reset_custom_btn =
         	(
-        		--global Custom_Script_list=#()
+        		time_tool.Custom_Script_list=#()
         		Custom_Script_Files = getFiles (Custom_Script_Dir + "*.*")
         		if Custom_Script_Files.count != 0 do
         		(
-        			/*
+
         			struct btn_custom (
-        				file_0,
-        			    text_2,
-        			    toolTip_3
+                        index,
+        				file_0
+        			    --text_2,
+        			    --toolTip_3
         			)
-        			*/
+
         			for i=1 to Custom_Script_Files.count do
-        			(
-        				--local tem_string = btn_custom()
-                        if i > 16 do exit
-        				local a_string = filterString (getfilenamefile (Custom_Script_Files[i])) "_"
-        				/*
-        				tem_string.file_0 = Custom_Script_Files[i]
-        				tem_string.text_2 = a_string[2]
-        				tem_string.toolTip_3 = a_string[3]
-        				append Custom_Script_list tem_string
-        				*/
-        				try
-        				(
-        					execute ("atime.btn_customize_" + (i as string) +".enabled = "+"true" ) --设置按钮启用
-        					execute ("atime.btn_customize_" + (i as string) +".text = "+ "\""+(a_string[2]) +"\"") --设置按钮字符
-        					if a_string.count >2 do
-        					(
-                                    execute ("atime.btn_customize_" + (i as string) +".toolTip = "+"\""+(a_string[3])+"\"")--
-                                --设置按钮提示
-        					)
+        			(    try
+                        (
+        				    local tem_string = btn_custom()
+                            if i > 16 do exit
+                            if (findString (Custom_Script_Files[i]) "_") != undefined do--then
+                            (
+                				local a_string = filterString (getfilenamefile (Custom_Script_Files[i])) "_"
+                				index = a_string[1] as integer
+                                if (index != undefined) and (index <= 16) then
+                                (
+                                    tem_string.index = index
+                                )
+                                else ( continue )
+                                --tem_string.index = a_string[1]
+
+                				tem_string.file_0 = Custom_Script_Files[i]
+                				--tem_string.text_2 = a_string[2]
+                				--tem_string.toolTip_3 = a_string[3]
+                                time_tool.Custom_Script_list[index] = tem_string
+                				--append Custom_Script_list tem_string
+
+                                execute ("atime.btn_customize_" + a_string[1] +".enabled = "+"true" ) --设置按钮启用
+                                execute ("atime.btn_customize_" + a_string[1] +".text = "+ "\""+(a_string[2]) +"\"")
+                                if a_string.count >2 do
+                                (
+                                        execute ("atime.btn_customize_" + a_string[1] +".toolTip = "+"\""+(a_string[3])+"\"")--
+                                    --设置按钮提示
+                                )
+                            )
+                            /*
+        				    else
+                            (
+
+            					execute ("atime.btn_customize_" + (i as string) +".enabled = "+"true" ) --设置按钮启用
+            					execute ("atime.btn_customize_" + (i as string) +".text = "+ "\""+(a_string[2]) +"\"") --设置按钮字符
+            					if a_string.count >2 do
+            					(
+                                        execute ("atime.btn_customize_" + (i as string) +".toolTip = "+"\""+(a_string[3])+"\"")--
+                                    --设置按钮提示
+            					)
+                            )*/
         				)catch()
         			)
         		)
@@ -277,6 +325,7 @@ joe_JiRts_Anim_Tools_Bar_v3.2_bate
     	on btn_RunSpt pressed do	---------- Updates
     	 (
             CreateDialog roll_about
+            time_tool.reset_btn()
             time_tool.reset_custom_btn()
     	 )
 
