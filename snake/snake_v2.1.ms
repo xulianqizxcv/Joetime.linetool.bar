@@ -1,6 +1,6 @@
 --2018/07/14 by:4698to
 --QQ :738746223
---https://github.com/4698to/Joetime.linetool.bar/snake
+--https://github.com/4698to/Joetime.linetool.bar/tree/master/snake
 
 rollout test "贪吃蛇v2.0"
 (
