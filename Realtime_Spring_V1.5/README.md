@@ -1,4 +1,12 @@
 
+-----
+# Realtime Spring V1.5.3
+
+## 2018/08/03
+
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/Realtime_Spring_V1.5/v_1.53.png)
+
+新增手动计算权重混合。
 
 ---
 # Realtime Spring V1.5
