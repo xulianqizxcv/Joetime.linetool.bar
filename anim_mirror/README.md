@@ -2,7 +2,14 @@
 
 ---
 
-# 动画镜像工具v.2.3
+# 动画镜像工具v.2.4.1
+
+-----------
+![](https://github.com/4698to/Joetime.linetool.bar/blob/master/anim_mirror/anim_mirror_img_06.png)
+
+2018/08/21
+
+！！！ 老版本都有BUG ，请使用 新版本  ！！！
 
 -------------
 
