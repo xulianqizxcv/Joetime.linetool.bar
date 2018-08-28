@@ -1,11 +1,12 @@
-if Bip_All == undefined then
-(
+--if Bip_All == undefined then
+--(
     try
     (--and i.ishidden == false
-        Bip_All = for i in objects where (classof i== Biped_Object and i.ishidden == false) collect i
-        hide Bip_All
+        Bip_All = for i in objects where (classof i== Biped_Object ) collect i.ishidden = (not i.ishidden)
+        --hide Bip_All
     )catch()
-)
+--)
+/*
 else
 (
     try
