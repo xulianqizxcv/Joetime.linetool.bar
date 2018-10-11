@@ -11,8 +11,9 @@ rollout CreatDummy "辅助物体 v.02" width:208 height:200
         spinner spn_PointSize "大小:"  range:[0,300,20] type:#integer width:60 height:16 across:2 offset:[-20,0]--pos:[30,50]
         editText edt_name "前缀:"  fieldWidth:70 offset:[-15,0]--pos:[80,50]
 
-        checkbox n_pos "位置" checked:true across:2
+        checkbox n_pos "位置" checked:true across:3
         checkbox n_rot "旋转" checked:true
+        checkbox n_anim "动画" checked:false
     )
     group "类型" (
         --checkbox c_circle "Circle"
@@ -139,6 +140,17 @@ rollout CreatDummy "辅助物体 v.02" width:208 height:200
             NewPoint.name = check_name "Point_"  obj.name
 
             if N_link.checked == true do( Newpoint.parent = obj )
+            if n_anim.state do
+            (
+                animate On
+                (
+                    for t=0 to (animationRange.end.frame as integer) do
+                    (
+                        at time t
+                        Newpoint.transform = obj.transform
+                    )
+                )
+            )
         )
         else
         (
