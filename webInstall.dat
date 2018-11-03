@@ -2,11 +2,13 @@
    #("001"),
     #(
 
-        "\\Scripts\\test\\"
+        "\\Scripts\\NDTools\\",
+        "\\Scripts\\NDTools\\",
+        "\\Scripts\\NDTools\\"
     ),
     #(
-        "\\NDTools\\AnimationToolGroup.mse",
-        "\\NDTools\\C3ScenceRota.ms",
-        "\\NDTools\\C3socket.ms"
+        "AnimationToolGroup.mse",
+        "C3ScenceRota.ms",
+        "C3socket.ms"
     )
 )
