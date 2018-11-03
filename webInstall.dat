@@ -2,9 +2,9 @@
    #("001"),
     #(
 
-        "\\Scripts\\NDTools\\",
-        "\\Scripts\\NDTools\\",
-        "\\Scripts\\NDTools\\"
+        "\\Scripts\\test\\",
+        "\\Scripts\\test\\",
+        "\\Scripts\\test\\"
     ),
     #(
         "AnimationToolGroup.mse",
