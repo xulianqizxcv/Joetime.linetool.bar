@@ -65,6 +65,17 @@ rollout CreatDummy "辅助物体 v.02" width:208 height:200
                 New_cirele.objectoffsetrot = (quat 0 -1 0 1)
                 --in coordSys Local rotate New_cirele (angleaxis 90 [0,1,0])
             )
+            if n_anim.state do
+            (
+                animate On
+                (
+                    for t=0 to (animationRange.end.frame as integer) do
+                    (
+                        at time t
+                        New_cirele.transform = obj.transform
+                    )
+                )
+            )
             New_cirele.name = check_name "Circle_" obj.name
         )
         else
@@ -106,6 +117,17 @@ rollout CreatDummy "辅助物体 v.02" width:208 height:200
                     new_spline.scale = [1,1,1]
                     new_spline.objectoffsetrot = (quat 0 -1 0 1)
                     --in coordSys Local rotate new_spline (angleaxis 90 [0,1,0])
+                )
+                if n_anim.state do
+                (
+                    animate On
+                    (
+                        for t=0 to (animationRange.end.frame as integer) do
+                        (
+                            at time t
+                            new_spline.transform = obj.transform
+                        )
+                    )
                 )
                 new_spline.name = check_name "Spline_"  obj.name
             )
