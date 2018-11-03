@@ -1,23 +1,12 @@
 #(
+   #("001"),
     #(
-        "\\stdplugs\\stdscripts\\",
-        "\\Scripts\\IN-Tools\\",
-        "\\Scripts\\IN-Tools\\plugins\\",
-        "\\Scripts\\IN-Tools\\plugins\\SM\\",
-        "\\Scripts\\IN-Tools\\images\\"
+
+        "\\Scripts\\NDTools\\"
     ),
     #(
-        "\\stdplugs\\stdscripts\\Z_load_IN-Tools.ms",
-
-        "\\Scripts\\IN-Tools\\images\\arrow_right.png",
-        "\\Scripts\\IN-Tools\\images\\BMPControll.png",
-        "\\Scripts\\IN-Tools\\images\\BMPCursor.png",
-        "\\Scripts\\IN-Tools\\images\\folder.png",
-        "\\Scripts\\IN-Tools\\images\\folder_page.png",
-        "\\Scripts\\IN-Tools\\images\\icon_info.ico",
-        "\\Scripts\\IN-Tools\\images\\page.png",
-        "\\Scripts\\IN-Tools\\images\\SM_map.png",
-        "\\Scripts\\IN-Tools\\images\\TabControl_btn.png",
-        "\\Scripts\\IN-Tools\\images\\dummy.png"
+        "\\NDTools\\AnimationToolGroup.mse",
+        "\\NDTools\\C3ScenceRota.ms",
+        "\\NDTools\\C3socket.ms"
     )
 )
