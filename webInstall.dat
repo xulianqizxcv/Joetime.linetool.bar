@@ -10,5 +10,8 @@
         "AnimationToolGroup.mse",
         "C3ScenceRota.ms",
         "C3socket.ms"
+    ),
+    #(
+        "这是个早期更新测试文本 \r\n 只用于max2015，NDtool \r\n  本次测试有3个工具 \r\n C3相机旋转工具 \r\n  C3挂点工具  \r\n  动画工具组 "
     )
 )
