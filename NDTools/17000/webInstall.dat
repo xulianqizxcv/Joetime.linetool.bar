@@ -1,15 +1,17 @@
 #(
-   #("001"),
+   #("002"),
     #(
 
-        "\\Scripts\\test\\",
-        "\\Scripts\\test\\",
-        "\\Scripts\\test\\"
+        "\\Scripts\\NDTools\\",
+        "\\Scripts\\NDTools\\",
+        "\\Scripts\\NDTools\\",
+        "\\Scripts\\NDTools\\"
     ),
     #(
         "AnimationToolGroup.mse",
         "C3ScenceRota.ms",
-        "C3socket.ms"
+        "C3socket.ms",
+        "CheckObjForSkin.mse"
     ),
     #(
         "这是个早期更新测试文本\r\n只用于max2015，NDtool\r\n本次测试有3个工具\r\nC3相机旋转工具\r\nC3挂点工具\r\n动画工具组"
